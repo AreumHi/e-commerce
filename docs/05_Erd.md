@@ -86,6 +86,19 @@
 
 ---
 
+### 🛒 cart (장바구니)
+
+| 컬럼명             | 타입      | 설명                                        |
+|--------------------|-----------|---------------------------------------------|
+| id                 | int       | 장바구니 항목 ID (PK)                       |
+| user_id            | int       | 사용자 ID (`user` 테이블 참조)              |
+| product_option_id  | int       | 상품 옵션 ID (`product_option` 테이블 참조) |
+| quantity           | int       | 담은 수량                                   |
+| created_at         | datetime  | 장바구니에 담은 시각                         |
+
+---
+
+
 ### 🧾 order (주문)
 
 | 컬럼명           | 타입      | 설명                           |
@@ -109,6 +122,8 @@
 | unit_price        | int       | 단가                                        |
 
 ---
+
+
 
 
 ### * 다이어그램 도구: [https://dbdiagram.io/](https://dbdiagram.io/)
@@ -161,6 +176,14 @@ Table product_option {
   size varchar // 사이즈
   stock int // 재고 수량
   created_at datetime // 등록일
+}
+
+Table cart {
+  id int [pk, increment] // 장바구니 항목 ID
+  user_id int [ref: > user.id] // 사용자 ID
+  product_option_id int [ref: > product_option.id] // 담은 옵션 ID
+  quantity int // 수량
+  created_at datetime // 담은 시각
 }
 
 Table order {
