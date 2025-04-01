@@ -76,7 +76,6 @@ flowchart TD
     
     style H fill:#DFF0D8,stroke:#3C763D,stroke-width:2px
     style I fill:#F2DEDE,stroke:#A94442,stroke-width:2px
-
 ```
 
 #### 🎟️ 쿠폰 발급
