@@ -1,9 +1,6 @@
 # 🧾 03_ERD
 
-<div style="text-align: center;">
-    <img src="img/erd.png" alt="erd" width="80%"/>
-</div>
-
+![ERD](img/erd.png)
 
 ---
 
@@ -25,16 +22,16 @@
 
 ### 🎟️ coupon (쿠폰)
 
-| 컬럼명          | 타입      | 설명                               |
-|-----------------|-----------|------------------------------------|
-| id              | int       | 쿠폰 ID (PK)                       |
-| code            | varchar   | 쿠폰 코드                          |
-| discount_rate   | int       | 할인 비율 (%)                      |
-| total_stock     | int       | 총 발급 가능 수량                 |
-| remaining_stock | int       | 남은 수량                          |
-| description     | varchar   | 상세 설명                          |
-| issued_at       | datetime  | 발급 시작일                        |
-| expired_at      | datetime  | 유효 만료일                        |
+| 컬럼명            | 타입      | 설명         |
+|----------------|-----------|------------|
+| id             | int       | 쿠폰 ID (PK) |
+| code           | varchar   | 쿠폰 코드      |
+| discount_rate  | int       | 할인 비율 (%)  |
+| total_stock    | int       | 총 발급 가능 수량 |
+| remaining_stock| int       | 남은 수량      |
+| description    | varchar   | 상세 설명      |
+| issued_at      | datetime  | 발급 시작일     |
+| expired_at     | datetime  | 유효 만료일     |
 
 ---
 
@@ -52,13 +49,13 @@
 
 ### 💰 point_history (포인트 이력)
 
-| 컬럼명       | 타입      | 설명                              |
-|--------------|-----------|-----------------------------------|
-| id           | int       | 포인트 기록 ID (PK)               |
-| user_id      | int       | 사용자 ID (user 참조)             |
-| event_type   | varchar   | 이벤트 종류 (`CHARGE`, `USE`)     |
-| amount       | int       | 금액                               |
-| created_at   | datetime  | 발생 시각                         |
+| 컬럼명       | 타입      | 설명                       |
+|--------------|-----------|--------------------------|
+| id           | int       | 포인트 이력 ID (PK)           |
+| user_id      | int       | 사용자 ID (user 참조)         |
+| event_type   | varchar   | 이벤트 종류 (`CHARGE`, `USE`) |
+| amount       | int       | 금액                       |
+| created_at   | datetime  | 발생 시각                    |
 
 ---
 
@@ -75,26 +72,26 @@
 
 ### 🎨 product_option (상품 옵션)
 
-| 컬럼명        | 타입      | 설명                            |
-|---------------|-----------|---------------------------------|
-| id            | int       | 옵션 ID (PK)                    |
-| product_id    | int       | 상품 ID (product 참조)          |
-| color         | varchar   | 색상                            |
-| size          | varchar   | 사이즈                          |
-| stock         | int       | 재고 수량                        |
-| created_at    | datetime  | 등록일                          |
+| 컬럼명        | 타입      | 설명                 |
+|---------------|-----------|--------------------|
+| id            | int       | 상품 옵션 ID (PK)      |
+| product_id    | int       | 상품 ID (product 참조) |
+| color         | varchar   | 색상                 |
+| size          | varchar   | 사이즈                |
+| stock         | int       | 재고 수량              |
+| created_at    | datetime  | 등록일                |
 
 ---
 
 ### 🛒 cart (장바구니)
 
-| 컬럼명             | 타입      | 설명                                        |
-|--------------------|-----------|---------------------------------------------|
-| id                 | int       | 장바구니 항목 ID (PK)                       |
-| user_id            | int       | 사용자 ID (`user` 테이블 참조)              |
+| 컬럼명             | 타입      | 설명                                       |
+|--------------------|-----------|--------------------------------------------|
+| id                 | int       | 장바구니 ID (PK)                       |
+| user_id            | int       | 사용자 ID (`user` 테이블 참조)             |
 | product_option_id  | int       | 상품 옵션 ID (`product_option` 테이블 참조) |
-| quantity           | int       | 담은 수량                                   |
-| created_at         | datetime  | 장바구니에 담은 시각                         |
+| quantity           | int       | 담은 수량                                  |
+| created_at         | datetime  | 장바구니에 담은 시각                        |
 
 ---
 
@@ -113,16 +110,28 @@
 
 ### 📄 order_item (주문 상세)
 
-| 컬럼명            | 타입      | 설명                                        |
-|-------------------|-----------|---------------------------------------------|
-| id                | int       | 주문상품 ID (PK)                            |
-| order_id          | int       | 주문 ID (order 참조)                        |
-| product_option_id | int       | 상품 옵션 ID (product_option 참조)         |
-| quantity          | int       | 수량                                        |
-| unit_price        | int       | 단가                                        |
+| 컬럼명            | 타입      | 설명                           |
+|-------------------|-----------|------------------------------|
+| id                | int       | 주문 상세 ID (PK)                |
+| order_id          | int       | 주문 ID (order 참조)             |
+| product_option_id | int       | 상품 옵션 ID (product_option 참조) |
+| quantity          | int       | 수량                           |
+| unit_price        | int       | 단가                           |
 
 ---
 
+### 📊 popular_product (인기 상품 통계)
+
+| 컬럼명            | 타입       | 설명                                   |
+|-------------------|------------|--------------------------------------|
+| id                | int        | 인기 상품 통계 ID (PK)                     |
+| product_id        | int        | 인기 상품 ID (`product` 테이블 참조)          |
+| total_sales       | int        | 최근 집계 기간 동안의 총 판매 수량 (주문 건수X)        |
+| rank              | int        | 인기 순위 (1위~5위 등)                      |
+| aggregated_at     | datetime   | 통계 집계 시각                             |
+| aggregation_range | varchar    | 집계 기준 기간 (ex: `'3d'`, `'24h'` 등 문자열) |
+
+---
 
 
 
@@ -200,5 +209,14 @@ Table order_item {
   product_option_id int [ref: > product_option.id] // 선택된 옵션 ID
   quantity int // 수량
   unit_price int // 단가
+}
+
+Table popular_product {
+  id int [pk, increment] // 고유 ID
+  product_id int [ref: > product.id] // 인기 상품 ID
+  total_sales int // 최근 3일간 총 판매 수량
+  rank int // 판매 순위
+  aggregated_at datetime // 집계 시각
+  aggregation_range varchar // 집계 기간 (예: '3d', '7d', '24h')
 }
 ```
