@@ -21,3 +21,5 @@ docker-compose up -d
 | 3 | 플로우차트 | [03_Flowchart.md](./docs/03_Flowchart.md) |
 | 4 | 시퀀스 다이어그램 | [04_Sequence_Diagram.md](./docs/04_Sequence_Diagram.md) |
 | 5 | ERD | [05_Erd.md](./docs/05_Erd.md) |
+| 6  | API 명세서   | [06_API_Specification.md.md](./docs/06_API_Specification.md) |
+| 7  | 에러 코드 정리  | [07_Error_Codes.md](./docs/07_Error_Codes.md) |
