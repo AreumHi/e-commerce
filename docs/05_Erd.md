@@ -1,13 +1,12 @@
 # 🧾 03_ERD
 
+> ✅ 본 문서는 e-commerce 프로젝트의 ERD 스키마에 대한 설명입니다. 모든 테이블은 단수형 명명 규칙을 따릅니다.
+
 ![ERD](img/erd.png)
 
 ---
 
 ## 🗂️ ERD 테이블 설명
-
-> ✅ 본 문서는 e-commerce 프로젝트의 ERD 스키마에 대한 설명입니다. 모든 테이블은 단수형 명명 규칙을 따릅니다.
-
 
 ### 👤 user (사용자)
 
@@ -42,7 +41,7 @@
 | id         | int       | 보유 쿠폰 ID (PK)                    |
 | user_id    | int       | 사용자 ID (user 참조)               |
 | coupon_id  | int       | 쿠폰 ID (coupon 참조)               |
-| is_used    | boolean   | 사용 여부                            |
+| used_at    | datetime   | 쿠폰 사용 시각 (NULL이면 미사용 상태)                            |
 | issued_at  | datetime  | 사용자에게 발급된 시각              |
 
 ---
@@ -160,7 +159,7 @@ Table user_coupon {
   id int [pk, increment] // 보유 쿠폰 ID
   user_id int [ref: > user.id] // 사용자 ID
   coupon_id int [ref: > coupon.id] // 쿠폰 ID
-  is_used boolean // 사용 여부
+  used_at datetime // 쿠폰 사용 시각 (NULL이면 미사용 상태)
   issued_at datetime // 발급 시각
 }
 
@@ -201,6 +200,7 @@ Table order {
   user_id int [ref: > user.id] // 주문자 ID
   total_price int // 주문 총액
   discounted_price int // 할인 적용 금액
+  payment_status varchar // 결제 상태 (PENDING, PAID, FAILED, CANCELED)
   created_at datetime // 주문 시각
 }
 
